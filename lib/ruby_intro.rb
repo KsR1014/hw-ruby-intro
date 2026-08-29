@@ -23,7 +23,15 @@ def sum_to_n?(arr, n)
   # YOUR CODE HERE
   return false if arr.empty?
   return false if arr.length == 1
-
+  list = []
+  arr.each do |item|
+    if list.include?(n - item)
+      return true
+    else
+      list << item
+    end
+  end
+  false
 end
 
 # Part 2
@@ -53,4 +61,30 @@ end
 
 class BookInStock
   # YOUR CODE HERE
+  def initialize(isbn, price)
+    raise ArgumentError, "ISBN cannot be empty" if isbn.empty?
+    raise ArgumentError, "Price must be greater than 0" if price <= 0
+    @isbn = isbn
+    @price = price
+  end
+
+  def isbn
+    @isbn
+  end
+
+  def price
+    @price
+  end
+
+  def isbn=(isbn)
+    @isbn = isbn
+  end
+
+  def price=(price)
+    @price = price
+  end
+
+  def price_as_string
+    "$#{'%.2f' % @price}"    # Adds dollar sign and formats the price to 2 decimal places
+  end
 end
